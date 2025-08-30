@@ -4,9 +4,12 @@ import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 
-@jakarta.persistence.Entity
+@Entity
 @Table(name = "meal")
-public class Meal extends Entity<Integer> {
+public class Meal{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String name;
     private String description;
     private Integer calories;
@@ -19,6 +22,11 @@ public class Meal extends Entity<Integer> {
         this.date = date;
     }
     public Meal(){}
+
+    public Long getId() {
+        return id;
+    }
+
     public String getName() {
         return name;
     }
@@ -50,4 +58,5 @@ public class Meal extends Entity<Integer> {
     public void setDate(LocalDateTime date) {
         this.date = date;
     }
+
 }

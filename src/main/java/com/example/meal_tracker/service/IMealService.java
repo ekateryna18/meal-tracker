@@ -1,0 +1,14 @@
+package com.example.meal_tracker.service;
+
+import com.example.meal_tracker.model.Meal;
+
+import java.util.List;
+
+public interface IMealService {
+    List<Meal> getAllMeals();
+    Meal getMealById(Long id);
+    List<Meal> getMealsByDate(String date);
+    Meal saveMeal(Meal meal);
+    void updateMeal(Meal meal);
+    void deleteMeal(Long id);
+}
