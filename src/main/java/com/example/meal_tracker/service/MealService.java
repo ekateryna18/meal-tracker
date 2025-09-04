@@ -5,6 +5,9 @@ import com.example.meal_tracker.repository.IMealRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 @Service
@@ -22,8 +25,10 @@ public class MealService implements IMealService {
     }
 
     @Override
-    public List<Meal> getMealsByDate(String date) {
-        return List.of();
+    public List<Meal> getMealsByDate(LocalDate date) {
+        LocalDateTime startOfDay = date.atStartOfDay();
+        LocalDateTime endOfDay = date.atTime(LocalTime.MAX);
+        return mealRepo.findByDateBetween(startOfDay, endOfDay);
     }
 
     @Override
@@ -32,7 +37,8 @@ public class MealService implements IMealService {
     }
 
     @Override
-    public void updateMeal(Meal meal) {
+    public Meal updateMeal(Meal meal) {
+        return mealRepo.save(meal);
     }
 
     @Override
